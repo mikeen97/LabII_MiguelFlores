@@ -86,7 +86,7 @@ public class Usuario {
         return ListSolicitudes;
     }
 
-    public void setListSolicitudes(String x) {
+    public void setListSolicitudes(Solicitudes x) {
         ListSolicitudes.add(x);
     }
 

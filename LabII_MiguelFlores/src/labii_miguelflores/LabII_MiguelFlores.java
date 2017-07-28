@@ -17,9 +17,9 @@ public class LabII_MiguelFlores {
     public static void main(String[] args) {
         ArrayList<Usuario> ListUsuarios = new ArrayList();
         ArrayList<Solicitudes> ListSolicitudes = new ArrayList();
-        String estado = " ";
-        String opcion = " ";
-        while (!opcion.equalsIgnoreCase("e")) {
+        String estado = "";
+        String opcion = "";
+        while (!opcion.equalsIgnoreCase("f")) {
             opcion = JOptionPane.showInputDialog("Menu\n"
                     + "a- Agregar Usuario \n"
                     + "b- Eliminar Usuario\n"
@@ -102,18 +102,50 @@ public class LabII_MiguelFlores {
                             for (Usuario t1 : ListUsuarios) {
                                 if (contador == posicion_solicitud) {
                                     ListSolicitudes.add(new Solicitudes(t1.getNombre(), nombreDelUsuario));
+                                    JOptionPane.showMessageDialog(null, "Se envio solicitud exitosamente!");
+                                }
+                                contador++;
+                            }
+                            /*
+                            String p1 = "";
+                            for (Usuario t1 : ListUsuarios) {
+                                if (t1 instanceof Usuario) {
+                                    p1 += ListUsuarios.indexOf(t1) + " " + ((Usuario) t1) + "\n";
                                 }
                             }
+                            JOptionPane.showMessageDialog(null, p1);
+                            int posicion_solicitud = Integer.parseInt(
+                                    JOptionPane.showInputDialog("Ingrese la posicion del usuario al que le desea enviar la solicitud"));
+                            int contador = 0;
+                            for (Usuario t1 : ListUsuarios) {
+                                if (contador == posicion_solicitud) {
+                                    ListSolicitudes.add(new Solicitudes(t1.getNombre(), nombreDelUsuario));
+                                }
+                                contador++;
+                            }
+                             */
                         }
                         if (opcion2.equals("b")) {
+                            for (Usuario t1 : ListUsuarios) {
+                                String p1 = "";
+                                if (t1.getUsername().equalsIgnoreCase(user)) {
+                                    for (Object m : t1.getListSolicitudes()) {
+                                        if (t1 instanceof Usuario) {
+                                            p1 += ListSolicitudes.indexOf(m) + " " + ((Solicitudes) m) + "\n";
+                                        }
+                                    }
+                                    JOptionPane.showMessageDialog(null, p1);
+                                }
+                            }
+                            /*
                             String p1 = "";
                             int contador_solucitudes = 0;
                             for (Solicitudes t1 : ListSolicitudes) {
                                 if (t1 instanceof Solicitudes) {
                                     if (t1.getReceptor().equalsIgnoreCase(nombreDelUsuario)) {
                                         p1 += ListSolicitudes.indexOf(t1) + " " + ((Solicitudes) t1) + "\n";
+                                        contador_solucitudes++;
                                     }
-                                    contador_solucitudes++;
                                 }
                             }
                             JOptionPane.showMessageDialog(null, p1);
@@ -125,16 +157,18 @@ public class LabII_MiguelFlores {
                             for (Solicitudes t1 : ListSolicitudes) {
                                 String emisor = t1.getEmisor();
                                 String receptor = t1.getReceptor();
-                                if (posicion_solicitud == contador_aceptarOrechazar) {
+                                if (posicion_solicitud == contador_solucitudes) {
                                     if (aceptar == 1) {
                                         for (Usuario m : ListUsuarios) {
                                             if (m.getNombre().equals(emisor)) {
                                                 m.setListAmigos(receptor);
                                                 ListSolicitudes.remove(posicion_solicitud);
+                                                JOptionPane.showMessageDialog(null, "Se acepto la solicitud de amistad");
                                             }
                                             if (m.getNombre().equals(receptor)) {
                                                 m.setListAmigos(emisor);
                                                 ListSolicitudes.remove(posicion_solicitud);
+                                                JOptionPane.showMessageDialog(null, "Se rechazo la solicitud de amistad");
                                             }
                                         }
                                     }
@@ -142,8 +176,8 @@ public class LabII_MiguelFlores {
                                         ListSolicitudes.remove(posicion_solicitud);
                                     }
                                 }
-                                contador_aceptarOrechazar++;
-                            }
+                            }   
+                             */
                         }
                         if (opcion2.equals("c")) {
 
