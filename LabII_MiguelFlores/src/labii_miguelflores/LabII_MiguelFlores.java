@@ -101,29 +101,12 @@ public class LabII_MiguelFlores {
                             int contador = 0;
                             for (Usuario t1 : ListUsuarios) {
                                 if (contador == posicion_solicitud) {
-                                    ListSolicitudes.add(new Solicitudes(t1.getNombre(), nombreDelUsuario));
+                                    t1.setListSolicitudes(new Solicitudes(t1.getNombre(), nombreDelUsuario));
                                     JOptionPane.showMessageDialog(null, "Se envio solicitud exitosamente!");
                                 }
                                 contador++;
                             }
-                            /*
-                            String p1 = "";
-                            for (Usuario t1 : ListUsuarios) {
-                                if (t1 instanceof Usuario) {
-                                    p1 += ListUsuarios.indexOf(t1) + " " + ((Usuario) t1) + "\n";
-                                }
-                            }
-                            JOptionPane.showMessageDialog(null, p1);
-                            int posicion_solicitud = Integer.parseInt(
-                                    JOptionPane.showInputDialog("Ingrese la posicion del usuario al que le desea enviar la solicitud"));
-                            int contador = 0;
-                            for (Usuario t1 : ListUsuarios) {
-                                if (contador == posicion_solicitud) {
-                                    ListSolicitudes.add(new Solicitudes(t1.getNombre(), nombreDelUsuario));
-                                }
-                                contador++;
-                            }
-                             */
+
                         }
                         if (opcion2.equals("b")) {
                             for (Usuario t1 : ListUsuarios) {
@@ -137,47 +120,26 @@ public class LabII_MiguelFlores {
                                     JOptionPane.showMessageDialog(null, p1);
                                 }
                             }
-                            /*
-                            String p1 = "";
-                            int contador_solucitudes = 0;
-                            for (Solicitudes t1 : ListSolicitudes) {
-                                if (t1 instanceof Solicitudes) {
-                                    if (t1.getReceptor().equalsIgnoreCase(nombreDelUsuario)) {
-                                        p1 += ListSolicitudes.indexOf(t1) + " " + ((Solicitudes) t1) + "\n";
-                                        contador_solucitudes++;
+                            int pos_solicitud = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion de la solicitud"));
+                            int confirmar = Integer.parseInt(JOptionPane.showInputDialog("Si desea aceptarla ingrese 1, de lo contrario ingrese 0"));
+                            int contador = 0;
+                            for (Usuario t1 : ListUsuarios) {
+                                if (t1.equals(user)) {
+                                    for (Object m : t1.getListSolicitudes()) {
+                                        String amigo = ((Solicitudes) m).getEmisor();
+                                        if (confirmar == 1) {
+                                            ListSolicitudes.remove(confirmar);
+                                            t1.setListAmigos(amigo);
+                                            JOptionPane.showMessageDialog(null, "Se agrego la solicitud exitosamente!");
+                                        }
+                                        if (confirmar == 0) {
+                                            ListSolicitudes.remove(confirmar);
+                                            JOptionPane.showMessageDialog(null, "Se rechazo la solicitud exitosamente!");
+                                        }
+                                        contador++;
                                     }
                                 }
                             }
-                            JOptionPane.showMessageDialog(null, p1);
-                            int posicion_solicitud = Integer.parseInt(
-                                    JOptionPane.showInputDialog("Ingrese la posicion de la solicitud que desea aceptar o rechazar."));
-                            int aceptar = Integer.parseInt(
-                                    JOptionPane.showInputDialog("Si desea aceptar la solicitud presione 1, para rechazar precione 0."));
-                            int contador_aceptarOrechazar = 0;
-                            for (Solicitudes t1 : ListSolicitudes) {
-                                String emisor = t1.getEmisor();
-                                String receptor = t1.getReceptor();
-                                if (posicion_solicitud == contador_solucitudes) {
-                                    if (aceptar == 1) {
-                                        for (Usuario m : ListUsuarios) {
-                                            if (m.getNombre().equals(emisor)) {
-                                                m.setListAmigos(receptor);
-                                                ListSolicitudes.remove(posicion_solicitud);
-                                                JOptionPane.showMessageDialog(null, "Se acepto la solicitud de amistad");
-                                            }
-                                            if (m.getNombre().equals(receptor)) {
-                                                m.setListAmigos(emisor);
-                                                ListSolicitudes.remove(posicion_solicitud);
-                                                JOptionPane.showMessageDialog(null, "Se rechazo la solicitud de amistad");
-                                            }
-                                        }
-                                    }
-                                    if (aceptar == 0) {
-                                        ListSolicitudes.remove(posicion_solicitud);
-                                    }
-                                }
-                            }   
-                             */
                         }
                         if (opcion2.equals("c")) {
 

@@ -18,10 +18,10 @@ public class Usuario {
     private String lugarNacimiento;
     private String Username;
     private String Contrasena;
-    private ArrayList ListAmigos;
-    private ArrayList ListSolicitudes;
-    private ArrayList ListMensajesEnviados;
-    private ArrayList ListBuzonEntrada;
+    private ArrayList<Object> ListAmigos = new ArrayList();
+    private ArrayList<Solicitudes> ListSolicitudes = new ArrayList();
+    private ArrayList<Object> ListMensajesEnviados = new ArrayList();
+    private ArrayList<Object> ListBuzonEntrada = new ArrayList();
 
     public Usuario() {
     }
