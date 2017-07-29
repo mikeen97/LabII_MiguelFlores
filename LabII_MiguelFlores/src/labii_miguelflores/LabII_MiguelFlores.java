@@ -81,13 +81,15 @@ public class LabII_MiguelFlores {
                 }
                 if (confirmacion == true) {
                     String opcion2 = "";
-                    while (!opcion2.equalsIgnoreCase("e")) {
+                    while (!opcion2.equalsIgnoreCase("g")) {
                         opcion2 = JOptionPane.showInputDialog("Menu\n"
                                 + "a- Agregar Amigo \n"
                                 + "b- Solicitud de amistades recibidas\n"
                                 + "c- Enviar Mensaje\n"
                                 + "d- Buzon de entrada \n"
-                                + "e- Salir a MENU PRINCIPAL\n");
+                                + "e- Listar amigos\n"
+                                + "f- Eliminar amigos\n"
+                                + "g- Salir a MENU PRINCIPAL\n");
                         if (opcion2.equals("a")) {
                             String p1 = "";
                             for (Usuario t1 : ListUsuarios) {
@@ -112,9 +114,10 @@ public class LabII_MiguelFlores {
                             for (Usuario t1 : ListUsuarios) {
                                 String p1 = "";
                                 if (t1.getUsername().equalsIgnoreCase(user)) {
-                                    for (Object m : t1.getListSolicitudes()) {
+                                    for (int i = 0; i < t1.getListSolicitudes().size(); i++) {
+                                        Solicitudes m = (Solicitudes) t1.getListSolicitudes().get(i);
                                         if (t1 instanceof Usuario) {
-                                            p1 += ListSolicitudes.indexOf(m) + " " + ((Solicitudes) m) + "\n";
+                                            p1 += t1.getListSolicitudes().indexOf(m) + " " + ((Solicitudes) m) + "\n";
                                         }
                                     }
                                     JOptionPane.showMessageDialog(null, p1);
@@ -124,17 +127,21 @@ public class LabII_MiguelFlores {
                             int confirmar = Integer.parseInt(JOptionPane.showInputDialog("Si desea aceptarla ingrese 1, de lo contrario ingrese 0"));
                             int contador = 0;
                             for (Usuario t1 : ListUsuarios) {
-                                if (t1.equals(user)) {
-                                    for (Object m : t1.getListSolicitudes()) {
-                                        String amigo = ((Solicitudes) m).getEmisor();
-                                        if (confirmar == 1) {
-                                            ListSolicitudes.remove(confirmar);
-                                            t1.setListAmigos(amigo);
-                                            JOptionPane.showMessageDialog(null, "Se agrego la solicitud exitosamente!");
-                                        }
-                                        if (confirmar == 0) {
-                                            ListSolicitudes.remove(confirmar);
-                                            JOptionPane.showMessageDialog(null, "Se rechazo la solicitud exitosamente!");
+                                if (t1.getNombre().equalsIgnoreCase(nombreDelUsuario)) {
+                                    for (int i = 0; i < t1.getListSolicitudes().size(); i++) {
+                                        Solicitudes m = (Solicitudes) t1.getListSolicitudes().get(i);
+                                        if (pos_solicitud == contador) {
+                                            if (confirmar == 1) {
+                                                String amigo = m.getReceptor();
+                                                t1.setListAmigos(amigo);
+                                                t1.getListSolicitudes().remove(i);
+                                                JOptionPane.showMessageDialog(null, "Se acepto la solicitud correctamente");
+                                            }
+                                            if (confirmar == 0) {
+                                                String amigo = m.getReceptor();
+                                                t1.getListSolicitudes().remove(i);
+                                                JOptionPane.showMessageDialog(null, "Se rechazo la solicitud correctamente");
+                                            }
                                         }
                                         contador++;
                                     }
@@ -146,6 +153,35 @@ public class LabII_MiguelFlores {
                         }
                         if (opcion2.equals("d")) {
 
+                        }
+                        if (opcion2.equals("e")) {
+                            for (Usuario t1 : ListUsuarios) {
+                                String p1 = "";
+                                if (t1.getUsername().equalsIgnoreCase(user)) {
+                                    for (int i = 0; i < t1.getListAmigos().size(); i++) {
+                                        String m = (String) t1.getListAmigos().get(i);
+                                        if (t1 instanceof Usuario) {
+                                            p1 += t1.getListAmigos().indexOf(m) + " " + ((String) m) + "\n";
+                                        }
+                                    }
+                                    JOptionPane.showMessageDialog(null, p1);
+                                }
+                            }
+                        }
+                        if (opcion2.equals("f")) {
+                            String name = JOptionPane.showInputDialog("Ingrese el nombre del amigo a eliminar");
+                            for (Usuario t1 : ListUsuarios) {
+                                String p1 = "";
+                                if (t1.getUsername().equalsIgnoreCase(user)) {
+                                    for (int i = 0; i < t1.getListAmigos().size(); i++) {
+                                        String m = (String) t1.getListAmigos().get(i);
+                                        if (m.equalsIgnoreCase(name)) {
+                                            t1.getListAmigos().remove(i);
+                                        }
+                                    }
+                                    JOptionPane.showMessageDialog(null, p1);
+                                }
+                            }
                         }
                     }
                 } else {
