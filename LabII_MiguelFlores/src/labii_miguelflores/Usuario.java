@@ -20,8 +20,8 @@ public class Usuario {
     private String Contrasena;
     private ArrayList<String> ListAmigos = new ArrayList();
     private ArrayList<Solicitudes> ListSolicitudes = new ArrayList();
-    private ArrayList<Object> ListMensajesEnviados = new ArrayList();
-    private ArrayList<Object> ListBuzonEntrada = new ArrayList();
+    private ArrayList ListMensajesEnviados = new ArrayList();
+    private ArrayList ListBuzonEntrada = new ArrayList();
 
     public Usuario() {
     }

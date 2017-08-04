@@ -82,7 +82,7 @@ public class LabII_MiguelFlores {
                 if (confirmacion == true) {
                     String opcion2 = "";
                     while (!opcion2.equalsIgnoreCase("g")) {
-                        opcion2 = JOptionPane.showInputDialog("Menu\n"
+                        opcion2 = JOptionPane.showInputDialog("Bienvenido al Menu " + nombreDelUsuario + " \n"
                                 + "a- Agregar Amigo \n"
                                 + "b- Solicitud de amistades recibidas\n"
                                 + "c- Enviar Mensaje\n"
@@ -123,8 +123,8 @@ public class LabII_MiguelFlores {
                                     JOptionPane.showMessageDialog(null, p1);
                                 }
                             }
-                            int pos_solicitud = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion de la solicitud"));
-                            int confirmar = Integer.parseInt(JOptionPane.showInputDialog("Si desea aceptarla ingrese 1, de lo contrario ingrese 0"));
+                            int pos_solicitud = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion de la solicitud " + nombreDelUsuario));
+                            int confirmar = Integer.parseInt(JOptionPane.showInputDialog(nombreDelUsuario + " Si desea aceptarla ingrese 1, de lo contrario ingrese 0"));
                             int contador = 0;
                             for (Usuario t1 : ListUsuarios) {
                                 if (t1.getNombre().equalsIgnoreCase(nombreDelUsuario)) {
@@ -132,15 +132,15 @@ public class LabII_MiguelFlores {
                                         Solicitudes m = (Solicitudes) t1.getListSolicitudes().get(i);
                                         if (pos_solicitud == contador) {
                                             if (confirmar == 1) {
-                                                String amigo = m.getReceptor();
+                                                String amigo = m.getEmisor();
                                                 t1.setListAmigos(amigo);
                                                 t1.getListSolicitudes().remove(i);
-                                                JOptionPane.showMessageDialog(null, "Se acepto la solicitud correctamente");
+                                                JOptionPane.showMessageDialog(null, "Se acepto la solicitud de: " + amigo + " correctamente");
                                             }
                                             if (confirmar == 0) {
-                                                String amigo = m.getReceptor();
+                                                String amigo = m.getEmisor();
                                                 t1.getListSolicitudes().remove(i);
-                                                JOptionPane.showMessageDialog(null, "Se rechazo la solicitud correctamente");
+                                                JOptionPane.showMessageDialog(null, "Se rechazo la solicitud de: " + amigo + " correctamente");
                                             }
                                         }
                                         contador++;
